@@ -37,12 +37,12 @@ The pipeline covers:
 
 ## Features
 
-- ✅ Binary classification: **Real** vs **Fake**
-- ✅ Transfer learning support (e.g., EfficientNet, ResNet, Xception)
-- ✅ Data augmentation to improve generalisation
-- ✅ Detailed evaluation: accuracy, precision, recall, F1-score, ROC-AUC
-- ✅ Single-image prediction script
-- ✅ Configurable training hyperparameters
+- Binary classification: **Real** vs **Fake**
+- Transfer learning support (e.g., EfficientNet, ResNet, Xception)
+- Data augmentation to improve generalisation
+- Detailed evaluation: accuracy, precision, recall, F1-score, ROC-AUC
+- Single-image prediction script
+- Configurable training hyperparameters
 
 ---
 
