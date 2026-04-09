@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+.env
+data/train/real/*
+data/train/fake/*
+data/val/real/*
+data/val/fake/*
+data/test/real/*
+data/test/fake/*
+!data/**/.gitkeep
+models/saved_model/*
+!models/saved_model/.gitkeep

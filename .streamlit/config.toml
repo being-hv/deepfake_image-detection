@@ -1,0 +1,7 @@
+[theme]
+# Deepfake App Theme
+primaryColor = "#00d2ff"
+backgroundColor = "#0E1117"
+secondaryBackgroundColor = "#1c2331"
+textColor = "#e0e6ed"
+font = "sans serif"

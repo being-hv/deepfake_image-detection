@@ -62,30 +62,32 @@ The pipeline covers:
 ## Project Structure
 
 ```
-deepfake_image-detection/
+deepfake_image_detection/
+├── app.py                 # Streamlit cloud wrapper
+├── streamlit_app.py       # Main Streamlit frontend
 ├── data/
-│   ├── train/
-│   │   ├── real/          # Real training images
-│   │   └── fake/          # Fake / deepfake training images
-│   ├── val/
-│   │   ├── real/
-│   │   └── fake/
-│   └── test/
-│       ├── real/
-│       └── fake/
+│   ├── train/             # Real & Fake training images
+│   ├── val/               # Validation images
+│   └── test/              # Testing images
 ├── models/
-│   └── saved_model/       # Saved model weights / checkpoints
+│   └── saved_model/       # Saved models and metric json buffers
 ├── notebooks/
 │   └── exploration.ipynb  # EDA and prototyping notebook
 ├── src/
 │   ├── dataset.py         # Data loading and augmentation
-│   ├── model.py           # Model definition
-│   ├── train.py           # Training loop
-│   ├── evaluate.py        # Evaluation utilities
-│   └── predict.py         # Single-image inference
+│   ├── model.py           # Model definition (EfficientNet/ResNet/Xception)
+│   ├── train.py           # Training loop & history saving
+│   ├── evaluate.py        # Evaluation & metric storing
+│   ├── predict.py         # Single-image inference
+│   └── scraper.py         # Admin scraper tool
+├── assets/
+│   └── styles.css         # Dark UI Streamlit Styles
+├── .streamlit/
+│   └── config.toml        # Streamlit Theme specifications
 ├── requirements.txt
 └── README.md
 ```
+
 
 ---
 
@@ -171,15 +173,23 @@ Key arguments:
 | `--model` | `efficientnetb4` | Backbone architecture |
 | `--output_dir` | `models/` | Where to save checkpoints |
 
+### Web Interface (Streamlit)
+
+```bash
+streamlit run streamlit_app.py
+```
+
+This will launch the Deepfake UI Dashboard where you can drag & drop files, access webcam real-time scanning, view model evaluation metrics, and monitor training performance.
+
 ### Evaluation
 
 ```bash
 python src/evaluate.py \
-  --model_path models/saved_model/ \
+  --model_path models/saved_model/best_model.h5 \
   --data_dir data/test/
 ```
 
-Outputs accuracy, precision, recall, F1-score, confusion matrix, and ROC-AUC on the test set.
+Outputs accuracy, precision, recall, F1-score, confusion matrix, and ROC-AUC on the test set, and saves them to `models/saved_model/metrics.json` for the web UI.
 
 ### Inference
 

@@ -1,0 +1,58 @@
+/* Custom Streamlit Styles for Cyber Aesthetic */
+
+.stApp {
+    background-color: #0E1117;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #00d2ff !important;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+.css-1d391kg {
+    background-color: #1c2331;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: rgba(28, 35, 49, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Apple Glass Sidebar Navigation */
+section[data-testid="stSidebar"] > div {
+    background: rgba(20, 25, 35, 0.4) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card:hover {
+    border-color: rgba(0, 210, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+}
+
+/* Prediction Output Text */
+.pred-text {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.pred-fake {
+    color: #ff3366;
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+}
+
+.pred-real {
+    color: #00ffcc;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
