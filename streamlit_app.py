@@ -70,7 +70,7 @@ if choice == "Home Dashboard":
     with col3:
         st.markdown("<div class='glass-card' style='text-align:center;'><h3>Status</h3><p>Online & Active</p></div>", unsafe_allow_html=True)
     
-    st.image("https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", use_container_width=True, caption="AI Vision Security")
+    st.image("https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", width="stretch", caption="AI Vision Security")
 
 elif choice == "Upload Detection":
     st.title("Real-Time Detection")
@@ -86,7 +86,7 @@ elif choice == "Upload Detection":
             with col_img:
                 st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
                 image = Image.open(uploaded_file)
-                st.image(image, caption='Uploaded Image', use_container_width=True)
+                st.image(image, caption='Uploaded Image', width="stretch")
                 st.markdown("</div>", unsafe_allow_html=True)
                 
             with col_res:
@@ -114,7 +114,7 @@ elif choice == "Upload Detection":
                                 marker_color=['#00ffcc', '#ff3366']
                             )])
                             fig.update_layout(title="Prediction Probability", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', font_color='white')
-                            st.plotly_chart(fig, use_container_width=True)
+                            st.plotly_chart(fig, width="stretch")
                             
                             # Save to history
                             st.session_state.history.insert(0, {"file": uploaded_file.name, "prediction": label, "confidence": conf})
@@ -147,7 +147,7 @@ elif choice == "Upload Detection":
     st.markdown("### Prediction History")
     if len(st.session_state.history) > 0:
         history_df = pd.DataFrame(st.session_state.history)
-        st.dataframe(history_df, use_container_width=True)
+        st.dataframe(history_df, width="stretch")
     else:
         st.info("No predictions yet.")
 
@@ -171,7 +171,7 @@ elif choice == "Model Training Dashboard":
             if 'val_accuracy' in hist:
                 fig_acc.add_trace(go.Scatter(x=epochs, y=hist['val_accuracy'], mode='lines', name='Val Acc', line=dict(color='#ff3366')))
             fig_acc.update_layout(title="Accuracy Curve", paper_bgcolor='rgba(0,0,0,0)', font_color='white')
-            st.plotly_chart(fig_acc, use_container_width=True)
+            st.plotly_chart(fig_acc, width="stretch")
             st.markdown("</div>", unsafe_allow_html=True)
             
         with col2:
@@ -181,7 +181,7 @@ elif choice == "Model Training Dashboard":
             if 'val_loss' in hist:
                 fig_loss.add_trace(go.Scatter(x=epochs, y=hist['val_loss'], mode='lines', name='Val Loss', line=dict(color='#ff3366')))
             fig_loss.update_layout(title="Loss Curve", paper_bgcolor='rgba(0,0,0,0)', font_color='white')
-            st.plotly_chart(fig_loss, use_container_width=True)
+            st.plotly_chart(fig_loss, width="stretch")
             st.markdown("</div>", unsafe_allow_html=True)
             
     else:
@@ -216,7 +216,7 @@ elif choice == "Evaluation Metrics":
                                 x=['REAL', 'FAKE'], y=['REAL', 'FAKE'],
                                 color_continuous_scale='Blues', title="Confusion Matrix")
                 fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', font_color='white')
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width="stretch")
             st.markdown("</div>", unsafe_allow_html=True)
             
         with colB:
@@ -226,7 +226,7 @@ elif choice == "Evaluation Metrics":
                 fig_roc = px.line(x=roc['fpr'], y=roc['tpr'], title="ROC Curve", labels={'x':'False Positive Rate', 'y':'True Positive Rate'})
                 fig_roc.add_shape(type='line', line=dict(dash='dash', color='gray'), x0=0, x1=1, y0=0, y1=1)
                 fig_roc.update_layout(paper_bgcolor='rgba(0,0,0,0)', font_color='white')
-                st.plotly_chart(fig_roc, use_container_width=True)
+                st.plotly_chart(fig_roc, width="stretch")
             st.markdown("</div>", unsafe_allow_html=True)
             
     else:

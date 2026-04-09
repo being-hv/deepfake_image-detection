@@ -71,14 +71,23 @@ def train(args):
         # Re-build / re-configure model to unfreeze upper layers
         model.trainable = True
         
-        # Example of targeted unfreezing as in model.py
-        for layer in model.layers[1].layers[:-20]: # model.layers[1] is the backbone
-            layer.trainable = False
-        for layer in model.layers[1].layers[-20:]:
-            if isinstance(layer, tf.keras.layers.BatchNormalization):
+        # Robustly locate the base_model (backbone) inside the top-level model
+        base_model = None
+        for layer in model.layers:
+            if hasattr(layer, 'layers') and not isinstance(layer, tf.keras.Sequential):
+                base_model = layer
+                break
+                
+        if base_model is not None:
+            for layer in base_model.layers[:-20]:
                 layer.trainable = False
-            else:
-                layer.trainable = True
+            for layer in base_model.layers[-20:]:
+                if isinstance(layer, tf.keras.layers.BatchNormalization):
+                    layer.trainable = False
+                else:
+                    layer.trainable = True
+        else:
+            print("Warning: Could not identify backbone model for partial fine-tuning. Unfreezing entire model.")
                 
         # Recompile with a very low learning rate
         model.compile(
